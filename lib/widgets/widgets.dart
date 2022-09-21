@@ -7,9 +7,26 @@ const textInputDecoration = InputDecoration(
   ),
   enabledBorder: OutlineInputBorder(
     borderSide: BorderSide(color: Colors.redAccent, width: 2),
+    
   ),
   errorBorder: OutlineInputBorder(
     borderSide: BorderSide(color: Colors.redAccent, width: 2),
+  ),
+);
+
+var textfieldDecoration = InputDecoration(
+  focusedBorder: OutlineInputBorder(
+    borderSide: const BorderSide(color: Colors.blue, width: 2),
+    borderRadius: BorderRadius.circular(20),
+  ),
+  enabledBorder:  OutlineInputBorder(
+    borderSide: const BorderSide(color: Colors.redAccent, width: 2),
+     borderRadius: BorderRadius.circular(20),
+  ),
+  errorBorder: OutlineInputBorder(
+    borderSide: const BorderSide(color: Colors.redAccent, width: 2),
+    borderRadius: BorderRadius.circular(20),
+
   ),
 );
 

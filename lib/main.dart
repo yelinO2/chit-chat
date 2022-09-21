@@ -1,6 +1,6 @@
 import 'package:chit_chat/firebase_options.dart';
 import 'package:chit_chat/helper/helper_function.dart';
-import 'package:chit_chat/screens/auth/signup_screen.dart';
+
 import 'package:chit_chat/screens/home_screen.dart';
 import 'package:chit_chat/screens/auth/login_screen.dart';
 
