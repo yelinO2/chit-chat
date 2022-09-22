@@ -7,11 +7,11 @@ import '../screens/chat_screen.dart';
 
 class GroupTile extends StatefulWidget {
   String userName;
-  String groupID;
+  String groupId;
   String groupName;
   GroupTile(
       {Key? key,
-      required this.groupID,
+      required this.groupId,
       required this.groupName,
       required this.userName})
       : super(key: key);
@@ -29,7 +29,7 @@ class _GroupTileState extends State<GroupTile> {
             context,
             ChatScreen(
               groupName: widget.groupName,
-              groupID: widget.groupID,
+              groupId: widget.groupId,
               userName: widget.userName,
             ));
       },

@@ -1,5 +1,20 @@
 import 'package:flutter/material.dart';
 
+var chatTextInputDecoration = InputDecoration(
+  labelStyle: const TextStyle(
+    color: Colors.white,
+    fontSize: 16,
+  ),
+  focusedBorder: OutlineInputBorder(
+      borderSide: const BorderSide(color: Colors.transparent),
+      borderRadius: BorderRadius.circular(50)),
+  enabledBorder: OutlineInputBorder(
+      borderSide: const BorderSide(color: Colors.transparent),
+      borderRadius: BorderRadius.circular(50)),
+  filled: true,
+  fillColor: Colors.grey,
+);
+
 const textInputDecoration = InputDecoration(
   labelStyle: TextStyle(color: Colors.white),
   focusedBorder: OutlineInputBorder(
@@ -7,7 +22,6 @@ const textInputDecoration = InputDecoration(
   ),
   enabledBorder: OutlineInputBorder(
     borderSide: BorderSide(color: Colors.redAccent, width: 2),
-    
   ),
   errorBorder: OutlineInputBorder(
     borderSide: BorderSide(color: Colors.redAccent, width: 2),
@@ -19,14 +33,13 @@ var textfieldDecoration = InputDecoration(
     borderSide: const BorderSide(color: Colors.blue, width: 2),
     borderRadius: BorderRadius.circular(20),
   ),
-  enabledBorder:  OutlineInputBorder(
+  enabledBorder: OutlineInputBorder(
     borderSide: const BorderSide(color: Colors.redAccent, width: 2),
-     borderRadius: BorderRadius.circular(20),
+    borderRadius: BorderRadius.circular(20),
   ),
   errorBorder: OutlineInputBorder(
     borderSide: const BorderSide(color: Colors.redAccent, width: 2),
     borderRadius: BorderRadius.circular(20),
-
   ),
 );
 

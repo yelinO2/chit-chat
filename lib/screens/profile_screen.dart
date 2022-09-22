@@ -122,14 +122,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ),
       ),
       body: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 170),
+        padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 40),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             const Icon(
               Icons.account_circle,
-              size: 100,
+              size: 200,
             ),
+            const SizedBox(height: 10),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
