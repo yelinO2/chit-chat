@@ -63,7 +63,13 @@ class DatabaseService {
         .snapshots();
   }
 
-  
+Future getRecentMessage(String groupId) async {
+    DocumentReference d = groupCollection.doc(groupId);
+    DocumentSnapshot documentSnapshot = await d.get();
+    return documentSnapshot['recentMessage'];
+  }
+ 
+
   Future getGroupAdmin(String groupId) async {
     DocumentReference d = groupCollection.doc(groupId);
     DocumentSnapshot documentSnapshot = await d.get();
@@ -115,7 +121,8 @@ class DatabaseService {
       });
     }
   }
-   sendMessage(String groupId, Map<String, dynamic> chatMessageData) async {
+
+  sendMessage(String groupId, Map<String, dynamic> chatMessageData) async {
     groupCollection.doc(groupId).collection("messages").add(chatMessageData);
     groupCollection.doc(groupId).update({
       "recentMessage": chatMessageData['message'],

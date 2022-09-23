@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// for message input field
 var chatTextInputDecoration = InputDecoration(
   labelStyle: const TextStyle(
     color: Colors.white,
@@ -15,6 +16,7 @@ var chatTextInputDecoration = InputDecoration(
   fillColor: Colors.grey,
 );
 
+// for login signup field
 const textInputDecoration = InputDecoration(
   labelStyle: TextStyle(color: Colors.white),
   focusedBorder: OutlineInputBorder(
@@ -28,6 +30,7 @@ const textInputDecoration = InputDecoration(
   ),
 );
 
+//  for creating groups
 var textfieldDecoration = InputDecoration(
   focusedBorder: OutlineInputBorder(
     borderSide: const BorderSide(color: Colors.blue, width: 2),

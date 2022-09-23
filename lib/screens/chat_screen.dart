@@ -28,8 +28,10 @@ class _ChatScreenState extends State<ChatScreen> {
 
   @override
   void initState() {
-    getChatandAdmin();
-    super.initState();
+    if (mounted) {
+      getChatandAdmin();
+      super.initState();
+    }
   }
 
   getChatandAdmin() {
@@ -70,7 +72,6 @@ class _ChatScreenState extends State<ChatScreen> {
       ),
       body: Stack(
         children: <Widget>[
-          // chat messages here
           chatMessages(),
           Container(
             alignment: Alignment.bottomCenter,
@@ -82,42 +83,43 @@ class _ChatScreenState extends State<ChatScreen> {
                 borderRadius: BorderRadius.circular(0),
                 color: Colors.grey[800],
               ),
-              child: Row(children: [
-                Expanded(
-                  child: SizedBox(
-                    height: 50,
-                    child: TextFormField(
-                      controller: messageController,
-                      style: const TextStyle(color: Colors.white),
-                      decoration: chatTextInputDecoration.copyWith(
-                        hintText: 'Send a message...',
-                        
+              child: Row(
+                children: [
+                  Expanded(
+                    child: SizedBox(
+                      height: 50,
+                      child: TextFormField(
+                        controller: messageController,
+                        style: const TextStyle(color: Colors.white),
+                        decoration: chatTextInputDecoration.copyWith(
+                          hintText: 'Send a message...',
+                        ),
                       ),
                     ),
                   ),
-                ),
-                const SizedBox(
-                  width: 12,
-                ),
-                GestureDetector(
-                  onTap: () {
-                    sendMessage();
-                  },
-                  child: Container(
-                    height: 50,
-                    width: 50,
-                    decoration: BoxDecoration(
-                      color: Theme.of(context).primaryColor,
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                    child: const Center(
-                        child: Icon(
-                      Icons.send,
-                      color: Colors.white,
-                    )),
+                  const SizedBox(
+                    width: 12,
                   ),
-                )
-              ]),
+                  GestureDetector(
+                    onTap: () {
+                      sendMessage();
+                    },
+                    child: Container(
+                      height: 50,
+                      width: 50,
+                      decoration: BoxDecoration(
+                        color: Theme.of(context).primaryColor,
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                      child: const Center(
+                          child: Icon(
+                        Icons.send,
+                        color: Colors.white,
+                      )),
+                    ),
+                  ),
+                ],
+              ),
             ),
           )
         ],
@@ -125,7 +127,7 @@ class _ChatScreenState extends State<ChatScreen> {
     );
   }
 
-  chatMessages() {
+  Widget chatMessages() {
     return StreamBuilder(
       stream: chats,
       builder: (context, AsyncSnapshot snapshot) {
@@ -150,7 +152,7 @@ class _ChatScreenState extends State<ChatScreen> {
       Map<String, dynamic> chatMessageMap = {
         "message": messageController.text,
         "sender": widget.userName,
-        "time": DateTime.now().millisecondsSinceEpoch,
+        "time": DateTime.now(),
       };
 
       DatabaseService().sendMessage(widget.groupId, chatMessageMap);

@@ -1,4 +1,4 @@
-// ignore_for_file: use_build_context_synchronously
+// ignore_for_file: use_build_context_synchronously, sized_box_for_whitespace
 import 'package:chit_chat/helper/helper_function.dart';
 import 'package:chit_chat/screens/auth/login_screen.dart';
 import 'package:chit_chat/screens/profile_screen.dart';
@@ -7,7 +7,6 @@ import 'package:chit_chat/service/databse_service.dart';
 import 'package:chit_chat/widgets/group_tile.dart';
 import 'package:chit_chat/widgets/widgets.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
 import 'package:flutter/material.dart';
 import 'package:chit_chat/service/auth_service.dart';
 
@@ -28,8 +27,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   void initState() {
-    gettingUserData();
-    super.initState();
+    if (mounted) {
+      gettingUserData();
+      super.initState();
+    }
   }
 
   gettingUserData() async {
@@ -65,13 +66,6 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        actions: [
-          IconButton(
-              onPressed: () {
-                nextScreen(context, const SearchScreen());
-              },
-              icon: const Icon(Icons.search)),
-        ],
         backgroundColor: Theme.of(context).primaryColor,
         centerTitle: true,
         title: const Text(
@@ -82,105 +76,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ),
-      drawer: Drawer(
-        child: ListView(
-          padding: const EdgeInsets.symmetric(vertical: 50),
-          children: <Widget>[
-            const Icon(
-              Icons.account_circle,
-              size: 150,
-              color: Colors.grey,
-            ),
-            const SizedBox(
-              height: 15,
-            ),
-            Text(
-              userName,
-              textAlign: TextAlign.center,
-              style: const TextStyle(fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 30),
-            const Divider(
-              height: 2,
-            ),
-            ListTile(
-              onTap: () {},
-              selectedColor: Theme.of(context).primaryColor,
-              selected: true,
-              contentPadding:
-                  const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-              leading: const Icon(Icons.group),
-              title: const Text(
-                'Groups',
-                style: TextStyle(color: Colors.white),
-              ),
-            ),
-            ListTile(
-              onTap: () {
-                nextScreenReplace(
-                    context,
-                    ProfileScreen(
-                      email: email,
-                      userName: userName,
-                    ));
-              },
-              contentPadding:
-                  const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-              leading: const Icon(Icons.account_box_rounded),
-              title: const Text(
-                'Profile',
-                style: TextStyle(color: Colors.white),
-              ),
-            ),
-            ListTile(
-              onTap: () async {
-                showDialog(
-                    barrierDismissible: false,
-                    context: context,
-                    builder: (context) {
-                      return AlertDialog(
-                        title: const Text('Logout'),
-                        content: const Text('Are you sure you want to logout?'),
-                        actions: [
-                          IconButton(
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                            icon: const Icon(Icons.cancel),
-                          ),
-                          IconButton(
-                            onPressed: () async {
-                              await authService.signOut();
-                              Navigator.of(context).pushAndRemoveUntil(
-                                  MaterialPageRoute(
-                                      builder: (context) => const Login()),
-                                  (route) => false);
-                            },
-                            icon: const Icon(Icons.done),
-                          ),
-                        ],
-                      );
-                    });
-              },
-              contentPadding:
-                  const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-              leading: const Icon(Icons.exit_to_app_rounded),
-              title: const Text(
-                'Logout',
-                style: TextStyle(color: Colors.white),
-              ),
-            ),
-          ],
-        ),
-      ),
       body: listGroup(),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Theme.of(context).primaryColor,
-        onPressed: () {
-          popUpDialog(context);
-        },
-        child: const Icon(Icons.add, size: 30),
-      ),
     );
   }
 
@@ -247,7 +143,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     style: ElevatedButton.styleFrom(
                         primary: Theme.of(context).primaryColor),
                     child: const Text('CREATE'),
-                  )
+                  ),
                 ],
               );
             },
@@ -268,10 +164,12 @@ class _HomeScreenState extends State<HomeScreen> {
                     int reverseIndex =
                         snapshot.data['group'].length - index - 1;
                     return GroupTile(
-                        groupId: getGpID(snapshot.data['group'][reverseIndex]),
-                        groupName:
-                            getGpName(snapshot.data['group'][reverseIndex]),
-                        userName: snapshot.data['fullName']);
+                      groupId: getGpID(snapshot.data['group'][reverseIndex]),
+                      groupName:
+                          getGpName(snapshot.data['group'][reverseIndex]),
+                      userName: snapshot.data['fullName'],
+                      // recentMessage: snapshot.data
+                    );
                   });
             } else {
               return noGroupWidget();
@@ -310,7 +208,7 @@ class _HomeScreenState extends State<HomeScreen> {
             height: 20,
           ),
           const Text(
-            "You've not joined any Chit-Chat, tap on the add icon to create a Chat or also search from top search button.",
+            "You've not joined any Chit-Chat, you can tap on the add icon to create a Chat or tap search button to search a chat.",
             textAlign: TextAlign.center,
           )
         ],

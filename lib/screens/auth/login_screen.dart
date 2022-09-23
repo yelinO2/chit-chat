@@ -2,6 +2,7 @@
 
 import 'package:chit_chat/constants/text.dart';
 import 'package:chit_chat/screens/auth/signup_screen.dart';
+import 'package:chit_chat/screens/main_page.dart';
 import 'package:chit_chat/service/databse_service.dart';
 import 'package:chit_chat/widgets/widgets.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -43,7 +44,7 @@ class _LoginState extends State<Login> {
           await HelperFunction.saveUserLoggedinStatus(true);
           await HelperFunction.saveUserEmail(email);
           await HelperFunction.saveUsername(snapshot.docs[0]['fullName']);
-          nextScreenReplace(context, const HomeScreen());
+          nextScreenReplace(context, const MainPage());
         } else {
           showSnackBar(context, Colors.red, value);
           setState(() {

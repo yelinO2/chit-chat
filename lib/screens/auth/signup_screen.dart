@@ -4,6 +4,7 @@ import 'package:chit_chat/helper/helper_function.dart';
 
 import 'package:chit_chat/screens/home_screen.dart';
 import 'package:chit_chat/screens/auth/login_screen.dart';
+import 'package:chit_chat/screens/main_page.dart';
 import 'package:chit_chat/service/auth_service.dart';
 
 import 'package:flutter/material.dart';
@@ -27,8 +28,6 @@ class _SignUpState extends State<SignUp> {
   dynamic email;
   dynamic password;
 
- 
-
   signup() async {
     if (formKey.currentState!.validate()) {
       setState(() {
@@ -42,7 +41,7 @@ class _SignUpState extends State<SignUp> {
           await HelperFunction.saveUserEmail(email);
           await HelperFunction.saveUsername(userName);
 
-          nextScreenReplace(context, const HomeScreen());
+          nextScreenReplace(context, const MainPage());
         } else {
           showSnackBar(context, Colors.red, value);
           setState(() {

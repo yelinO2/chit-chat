@@ -4,16 +4,19 @@ import 'package:chit_chat/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
 import '../screens/chat_screen.dart';
+import '../service/databse_service.dart';
 
 class GroupTile extends StatefulWidget {
   String userName;
   String groupId;
   String groupName;
+  String? recentMessage;
   GroupTile(
       {Key? key,
       required this.groupId,
       required this.groupName,
-      required this.userName})
+      required this.userName,
+      this.recentMessage})
       : super(key: key);
 
   @override
@@ -21,6 +24,26 @@ class GroupTile extends StatefulWidget {
 }
 
 class _GroupTileState extends State<GroupTile> {
+  dynamic recentMessage;
+
+  @override
+  void initState() {
+    if (mounted) {
+      getRecentMessage();
+      super.initState();
+    }
+  }
+
+  getRecentMessage() async {
+    await DatabaseService().getRecentMessage(widget.groupId).then((value) {
+      if (mounted) {
+        setState(() {
+          recentMessage = value;
+        });
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -52,7 +75,9 @@ class _GroupTileState extends State<GroupTile> {
             widget.groupName,
             style: const TextStyle(fontWeight: FontWeight.bold),
           ),
-          subtitle: Text('${widget.userName} join the group'),
+          subtitle: recentMessage == null || recentMessage == ''
+              ? Text('${widget.userName} join the group')
+              : Text('$recentMessage'),
         ),
       ),
     );

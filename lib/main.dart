@@ -3,6 +3,7 @@ import 'package:chit_chat/helper/helper_function.dart';
 
 import 'package:chit_chat/screens/home_screen.dart';
 import 'package:chit_chat/screens/auth/login_screen.dart';
+import 'package:chit_chat/screens/main_page.dart';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -70,7 +71,7 @@ class _MyAppState extends State<MyApp> {
         brightness: Brightness.dark,
         primaryColor: Constants().primaryColor,
       ),
-      home: isSignedIn ? const HomeScreen() : const Login(),
+      home: isSignedIn ? const MainPage() : const Login(),
     );
   }
 }

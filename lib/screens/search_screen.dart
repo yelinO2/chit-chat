@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:chit_chat/screens/chat_screen.dart';
 import 'package:chit_chat/widgets/widgets.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -31,9 +33,11 @@ class _SearchScreenState extends State<SearchScreen> {
 
   getCurrentUserIdandName() async {
     await HelperFunction.getUserName().then((value) {
-      setState(() {
-        userName = value!;
-      });
+      if (mounted) {
+        setState(() {
+          userName = value!;
+        });
+      }
     });
     user = FirebaseAuth.instance.currentUser;
   }
@@ -51,7 +55,7 @@ class _SearchScreenState extends State<SearchScreen> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: Theme.of(context).primaryColor,
+        backgroundColor: Colors.transparent,
         title: const Text(
           "Search",
           style: TextStyle(
@@ -61,38 +65,25 @@ class _SearchScreenState extends State<SearchScreen> {
       body: Column(
         children: [
           Container(
-            color: Theme.of(context).primaryColor,
-            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-            child: Row(
-              children: [
-                Expanded(
-                  child: TextField(
-                    controller: searchController,
-                    style: const TextStyle(color: Colors.white),
-                    decoration: const InputDecoration(
-                        border: InputBorder.none,
-                        hintText: "Search groups....",
-                        hintStyle:
-                            TextStyle(color: Colors.white, fontSize: 16)),
-                  ),
-                ),
-                GestureDetector(
+            margin: const EdgeInsets.only(left: 20, right: 20),
+            height: 50,
+            child: TextFormField(
+              onFieldSubmitted: ((vlaue) => initiateSearchMethod()),
+              controller: searchController,
+              style: const TextStyle(color: Colors.white),
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                hintText: 'Search groups....',
+                prefixIcon: GestureDetector(
                   onTap: () {
                     initiateSearchMethod();
                   },
-                  child: Container(
-                    width: 40,
-                    height: 40,
-                    decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.1),
-                        borderRadius: BorderRadius.circular(40)),
-                    child: const Icon(
-                      Icons.search,
-                      color: Colors.white,
-                    ),
+                  child: const Icon(
+                    Icons.search,
+                    size: 30,
                   ),
-                )
-              ],
+                ),
+              ),
             ),
           ),
           isLoading
@@ -145,9 +136,11 @@ class _SearchScreenState extends State<SearchScreen> {
     await DatabaseService(uid: user!.uid)
         .isUserJoined(groupName, groupId, userName)
         .then((value) {
-      setState(() {
-        isJoined = value;
-      });
+      if (mounted) {
+        setState(() {
+          isJoined = value;
+        });
+      }
     });
   }
 
