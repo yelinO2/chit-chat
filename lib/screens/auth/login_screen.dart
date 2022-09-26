@@ -110,6 +110,7 @@ class _LoginState extends State<Login> {
                                 text: 'Welcome back!',
                                 size: 25,
                                 fontWeight: FontWeight.bold,
+                                color: Colors.white,
                               ),
                               const Spacer(),
                               TextFormField(
@@ -185,15 +186,44 @@ class _LoginState extends State<Login> {
                                 child: const Text('Log in'),
                               ),
                               const Spacer(),
-                              ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  primary: Theme.of(context).primaryColor,
-                                  onPrimary: Colors.black,
-                                  minimumSize: const Size(double.infinity, 50),
+                              const Center(
+                                child: ModifiedText(
+                                  text: 'Or continue with',
+                                  color: Colors.white,
                                 ),
-                                onPressed: () {},
-                                child: const Text('Continue with Google'),
                               ),
+                              const Spacer(),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  InkWell(
+                                    onTap: () {},
+                                    child: Image.asset(
+                                      'images/google.png',
+                                      height: 40,
+                                      width: 40,
+                                    ),
+                                  ),
+                                  InkWell(
+                                    onTap: () {},
+                                    child: Image.asset(
+                                      'images/facebook.png',
+                                      height: 40,
+                                      width: 40,
+                                    ),
+                                  ),
+                                  InkWell(
+                                    onTap: () {},
+                                    child: Image.asset(
+                                      'images/twitter.png',
+                                      height: 40,
+                                      width: 40,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              const Spacer(),
                               const Spacer(),
                               Text.rich(
                                 TextSpan(

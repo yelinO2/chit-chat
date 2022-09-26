@@ -73,11 +73,18 @@ class _GroupTileState extends State<GroupTile> {
           ),
           title: Text(
             widget.groupName,
-            style: const TextStyle(fontWeight: FontWeight.bold),
+            style: const TextStyle(
+                fontWeight: FontWeight.bold, color: Colors.white),
           ),
           subtitle: recentMessage == null || recentMessage == ''
-              ? Text('${widget.userName} join the group')
-              : Text('$recentMessage'),
+              ? Text(
+                  '${widget.userName} join the group',
+                  style: const TextStyle(color: Colors.white),
+                )
+              : Text(
+                  '$recentMessage',
+                  style: const TextStyle(color: Colors.white),
+                ),
         ),
       ),
     );

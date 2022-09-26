@@ -62,8 +62,14 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
                   context: context,
                   builder: (context) {
                     return AlertDialog(
-                      title: const Text("Exit"),
-                      content: const Text("Are you sure you exit the group? "),
+                      title: const Text(
+                        "Exit",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      content: const Text(
+                        "Are you sure you exit the group? ",
+                        style: TextStyle(color: Colors.white),
+                      ),
                       actions: [
                         IconButton(
                           onPressed: () {
@@ -126,12 +132,16 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
                     children: [
                       Text(
                         "Group: ${widget.groupName}",
-                        style: const TextStyle(fontWeight: FontWeight.w500),
+                        style: const TextStyle(
+                            fontWeight: FontWeight.w500, color: Colors.white),
                       ),
                       const SizedBox(
                         height: 5,
                       ),
-                      Text("Admin: ${getName(widget.adminName)}")
+                      Text(
+                        "Admin: ${getName(widget.adminName)}",
+                        style: const TextStyle(color: Colors.white),
+                      )
                     ],
                   )
                 ],
@@ -172,8 +182,14 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
                               fontWeight: FontWeight.bold),
                         ),
                       ),
-                      title: Text(getName(snapshot.data['members'][index])),
-                      subtitle: Text(getId(snapshot.data['members'][index])),
+                      title: Text(
+                        getName(snapshot.data['members'][index]),
+                        style: const TextStyle(color: Colors.white),
+                      ),
+                      subtitle: Text(
+                        getId(snapshot.data['members'][index]),
+                        style: const TextStyle(color: Colors.white),
+                      ),
                     ),
                   );
                 },

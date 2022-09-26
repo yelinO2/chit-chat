@@ -1,10 +1,10 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:chit_chat/helper/helper_function.dart';
+import 'package:chit_chat/screens/auth/email_verify_screen.dart';
 
-import 'package:chit_chat/screens/home_screen.dart';
 import 'package:chit_chat/screens/auth/login_screen.dart';
-import 'package:chit_chat/screens/main_page.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:chit_chat/service/auth_service.dart';
 
 import 'package:flutter/material.dart';
@@ -41,7 +41,7 @@ class _SignUpState extends State<SignUp> {
           await HelperFunction.saveUserEmail(email);
           await HelperFunction.saveUsername(userName);
 
-          nextScreenReplace(context, const MainPage());
+          nextScreenReplace(context, const VerifyEmailScreen());
         } else {
           showSnackBar(context, Colors.red, value);
           setState(() {
@@ -110,6 +110,7 @@ class _SignUpState extends State<SignUp> {
                                   text: "Let's Get Started",
                                   size: 25,
                                   fontWeight: FontWeight.bold,
+                                  color: Colors.white,
                                 ),
                               ),
                               const Spacer(),
@@ -117,6 +118,7 @@ class _SignUpState extends State<SignUp> {
                                 child: ModifiedText(
                                   text: "Chit-Chat with your friends",
                                   size: 15,
+                                  color: Colors.white,
                                 ),
                               ),
                               const Spacer(),
@@ -217,23 +219,51 @@ class _SignUpState extends State<SignUp> {
                                 child: const Text('Sign up'),
                               ),
                               const Spacer(),
-                              ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  primary: Theme.of(context).primaryColor,
-                                  onPrimary: Colors.black,
-                                  minimumSize: const Size(double.infinity, 50),
+                              const Center(
+                                child: ModifiedText(
+                                  text: 'Or continue with',
+                                  color: Colors.white,
                                 ),
-                                onPressed: () async {
-                                  // login();
-                                },
-                                child: const Text('Sign up with Google'),
+                              ),
+                              const Spacer(),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  InkWell(
+                                    onTap: () {},
+                                    child: Image.asset(
+                                      'images/google.png',
+                                      height: 40,
+                                      width: 40,
+                                    ),
+                                  ),
+                                  InkWell(
+                                    onTap: () {},
+                                    child: Image.asset(
+                                      'images/facebook.png',
+                                      height: 40,
+                                      width: 40,
+                                    ),
+                                  ),
+                                  InkWell(
+                                    onTap: () {},
+                                    child: Image.asset(
+                                      'images/twitter.png',
+                                      height: 40,
+                                      width: 40,
+                                    ),
+                                  ),
+                                ],
                               ),
                               const Spacer(),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   const ModifiedText(
-                                      text: 'Already in Chit-Chat?'),
+                                    text: 'Already in Chit-Chat?',
+                                    color: Colors.white,
+                                  ),
                                   TextButton(
                                     onPressed: () {
                                       nextScreen(context, const Login());

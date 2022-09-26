@@ -21,7 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
   String userName = '';
   String email = '';
   String groupName = '';
-  AuthService authService = AuthService();
+
   Stream? groups;
   bool isLoading = false;
 
@@ -91,6 +91,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 title: const Text(
                   'Create a group chat',
                   textAlign: TextAlign.left,
+                  style: TextStyle(color: Colors.white),
                 ),
                 content: Column(
                   mainAxisSize: MainAxisSize.min,

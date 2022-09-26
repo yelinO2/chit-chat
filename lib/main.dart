@@ -1,9 +1,9 @@
 import 'package:chit_chat/firebase_options.dart';
 import 'package:chit_chat/helper/helper_function.dart';
-
-import 'package:chit_chat/screens/home_screen.dart';
-import 'package:chit_chat/screens/auth/login_screen.dart';
+import 'package:chit_chat/screens/auth/email_verify_screen.dart';
+import 'package:chit_chat/screens/auth/signup_screen.dart';
 import 'package:chit_chat/screens/main_page.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -68,10 +68,10 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       title: 'Chit Chat',
       theme: ThemeData(
-        brightness: Brightness.dark,
-        primaryColor: Constants().primaryColor,
-      ),
-      home: isSignedIn ? const MainPage() : const Login(),
+          brightness: Brightness.dark,
+          primaryColor: Constants().primaryColor,
+          textTheme: GoogleFonts.robotoTextTheme(Theme.of(context).textTheme)),
+      home: isSignedIn ? const MainPage() : const SignUp(),
     );
   }
 }

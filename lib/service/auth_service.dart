@@ -12,8 +12,6 @@ class AuthService {
       User? newUser = (await firebaseAuth.createUserWithEmailAndPassword(
               email: email, password: password))
           .user;
-      print('<<<<<<<<<<<user>>>>>>>>>>>');
-      print(newUser);
 
       if (newUser != null) {
         await DatabaseService(uid: newUser.uid).savingUserData(userName, email);
@@ -23,6 +21,8 @@ class AuthService {
       return e.message;
     }
   }
+
+  
 
   Future loggedIn(String email, String password) async {
     try {

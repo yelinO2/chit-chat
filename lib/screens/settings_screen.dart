@@ -15,7 +15,10 @@ class _SettingsState extends State<Settings> {
         title: const Text('Settings'),
       ),
       body: const Center(
-        child: Text('To implement settings but not sure when !!!!!'),
+        child: Text(
+          'To implement settings but not sure when !!!!!',
+          style: TextStyle(color: Colors.white),
+        ),
       ),
     );
   }
