@@ -1,6 +1,6 @@
 import 'package:chit_chat/firebase_options.dart';
 import 'package:chit_chat/helper/helper_function.dart';
-import 'package:chit_chat/screens/auth/email_verify_screen.dart';
+// import 'package:chit_chat/screens/auth/email_verify_screen.dart';
 import 'package:chit_chat/screens/auth/signup_screen.dart';
 import 'package:chit_chat/screens/main_page.dart';
 import 'package:google_fonts/google_fonts.dart';

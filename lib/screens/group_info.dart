@@ -108,6 +108,7 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
         child: Column(
           children: [
             Container(
+              width: MediaQuery.of(context).size.width,
               padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(30),

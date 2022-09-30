@@ -157,9 +157,15 @@ class _SearchScreenState extends State<SearchScreen> {
           style: const TextStyle(color: Colors.white),
         ),
       ),
-      title:
-          Text(groupName, style: const TextStyle(fontWeight: FontWeight.w600)),
-      subtitle: Text("Admin: ${getName(admin)}"),
+      title: Text(
+        groupName,
+        style:
+            const TextStyle(fontWeight: FontWeight.w600, color: Colors.white),
+      ),
+      subtitle: Text(
+        "Admin: ${getName(admin)}",
+        style: const TextStyle(color: Colors.white),
+      ),
       trailing: InkWell(
         onTap: () async {
           await DatabaseService(uid: user!.uid)

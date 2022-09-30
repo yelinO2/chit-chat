@@ -1,4 +1,5 @@
 // ignore_for_file: use_build_context_synchronously, sized_box_for_whitespace
+import 'package:chit_chat/constants/text.dart';
 import 'package:chit_chat/helper/helper_function.dart';
 import 'package:chit_chat/screens/auth/login_screen.dart';
 import 'package:chit_chat/screens/profile_screen.dart';
@@ -21,6 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
   String userName = '';
   String email = '';
   String groupName = '';
+  dynamic recentMessage;
 
   Stream? groups;
   bool isLoading = false;
@@ -164,12 +166,13 @@ class _HomeScreenState extends State<HomeScreen> {
                   itemBuilder: (context, index) {
                     int reverseIndex =
                         snapshot.data['group'].length - index - 1;
+
                     return GroupTile(
                       groupId: getGpID(snapshot.data['group'][reverseIndex]),
                       groupName:
                           getGpName(snapshot.data['group'][reverseIndex]),
                       userName: snapshot.data['fullName'],
-                      // recentMessage: snapshot.data
+                      recentMessage: recentMessage,
                     );
                   });
             } else {
@@ -211,6 +214,7 @@ class _HomeScreenState extends State<HomeScreen> {
           const Text(
             "You've not joined any Chit-Chat, you can tap on the add icon to create a Chat or tap search button to search a chat.",
             textAlign: TextAlign.center,
+            style: TextStyle(color: Colors.white),
           )
         ],
       ),

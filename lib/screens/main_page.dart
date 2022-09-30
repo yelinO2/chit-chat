@@ -81,7 +81,11 @@ class _MainPageState extends State<MainPage> {
               onPressed: () {
                 popUpDialog(context);
               },
-              child: const Icon(Icons.add, size: 30),
+              child: const Icon(
+                Icons.add,
+                size: 30,
+                color: Colors.white,
+              ),
             ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomAppBar(
@@ -139,7 +143,9 @@ class _MainPageState extends State<MainPage> {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Icon(
-                          currentTab == 1 ? Icons.search_rounded : Icons.search,
+                          currentTab == 1
+                              ? Icons.search_rounded
+                              : Icons.search,
                           color: currentTab == 1
                               ? Theme.of(context).primaryColor
                               : Colors.white,
@@ -241,8 +247,9 @@ class _MainPageState extends State<MainPage> {
             builder: (context, setState) {
               return AlertDialog(
                 title: const Text(
-                  'Create a group chat',
+                  'Create a Chat-Chat',
                   textAlign: TextAlign.left,
+                  style: TextStyle(color: Colors.white),
                 ),
                 content: Column(
                   mainAxisSize: MainAxisSize.min,
@@ -254,6 +261,7 @@ class _MainPageState extends State<MainPage> {
                             ),
                           )
                         : TextField(
+                            style: const TextStyle(color: Colors.white),
                             onChanged: (value) {
                               setState(() {
                                 groupName = value;
@@ -263,6 +271,8 @@ class _MainPageState extends State<MainPage> {
                           ),
                   ],
                 ),
+                actionsPadding:
+                    const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
                 actions: [
                   ElevatedButton(
                     onPressed: () {

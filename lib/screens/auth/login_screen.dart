@@ -44,7 +44,10 @@ class _LoginState extends State<Login> {
           await HelperFunction.saveUserLoggedinStatus(true);
           await HelperFunction.saveUserEmail(email);
           await HelperFunction.saveUsername(snapshot.docs[0]['fullName']);
-          nextScreenReplace(context, const MainPage());
+          Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(builder: (context) => const MainPage()),
+              (route) => false);
         } else {
           showSnackBar(context, Colors.red, value);
           setState(() {

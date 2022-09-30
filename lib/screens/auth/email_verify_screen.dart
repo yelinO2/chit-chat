@@ -74,87 +74,86 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return
-        // isEmailVerified
-        // ? const MainPage() :
-        Scaffold(
-      body: Center(
-        child: Stack(
-          children: [
-            Positioned(
-              child: Container(
-                height: size.height,
-                width: size.width,
-                // color: Colors.black,
-              ),
-            ),
-            Center(
-              child: Positioned(
-                child: Container(
-                  padding: const EdgeInsets.all(12),
-                  decoration: BoxDecoration(
-                    color: Colors.grey,
-                    borderRadius: BorderRadius.circular(20),
+    return isEmailVerified
+        ? const MainPage()
+        : Scaffold(
+            body: Center(
+              child: Stack(
+                children: [
+                  Positioned(
+                    child: Container(
+                      height: size.height,
+                      width: size.width,
+                      // color: Colors.black,
+                    ),
                   ),
-                  height: size.height * 0.5,
-                  width: size.width * 0.7,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Text(
-                        'To confirm your email address,\n tap the link in the mail we sent to you.',
-                        style: TextStyle(fontSize: 16, color: Colors.white),
-                        textAlign: TextAlign.center,
+                  Positioned(
+                    left: size.width * 0.16,
+                    top: size.height * 0.25,
+                    child: Container(
+                      padding: const EdgeInsets.all(12),
+                      decoration: BoxDecoration(
+                        color: Colors.grey,
+                        borderRadius: BorderRadius.circular(20),
                       ),
-                      const SizedBox(height: 24),
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          primary: Colors.yellow,
-                          onPrimary: Colors.blue,
-                        ),
-                        onPressed: () {
-                          canResentEmail ? sendEmailVerification() : null;
-                        },
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: const [
-                            Icon(Icons.mail),
-                            SizedBox(width: 10),
-                            Text('Resent Email')
-                          ],
-                        ),
+                      height: size.height * 0.5,
+                      width: size.width * 0.7,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Text(
+                            'To confirm your email address,\n tap the link in the mail we sent to you.',
+                            style: TextStyle(fontSize: 16, color: Colors.white),
+                            textAlign: TextAlign.center,
+                          ),
+                          const SizedBox(height: 24),
+                          ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              primary: Colors.yellow,
+                              onPrimary: Colors.blue,
+                            ),
+                            onPressed: () {
+                              canResentEmail ? sendEmailVerification() : null;
+                            },
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: const [
+                                Icon(Icons.mail),
+                                SizedBox(width: 10),
+                                Text('Resent Email')
+                              ],
+                            ),
+                          ),
+                          const SizedBox(height: 10),
+                          ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              primary: Colors.yellow,
+                              onPrimary: Colors.blue,
+                            ),
+                            onPressed: () {
+                              authService.signOut();
+                            },
+                            child: const Text('Cancel'),
+                          ),
+                        ],
                       ),
-                      const SizedBox(height: 10),
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          primary: Colors.yellow,
-                          onPrimary: Colors.blue,
-                        ),
-                        onPressed: () {
-                          authService.signOut();
-                        },
-                        child: const Text('Cancel'),
-                      ),
-                    ],
+                    ),
                   ),
-                ),
+                  Positioned(
+                    left: size.width * 0.4,
+                    top: size.height * 0.2,
+                    child: Container(
+                      child: Image.asset(
+                        'images/mail.png',
+                        height: 80,
+                        width: 80,
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
-            Positioned(
-              left: size.width * 0.4,
-              top: size.height * 0.2,
-              child: Container(
-                child: Image.asset(
-                  'images/mail.png',
-                  height: 80,
-                  width: 80,
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
+          );
   }
 }
